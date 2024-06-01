@@ -19,11 +19,11 @@ function jump() {
     isJumping = true;
     let jumpHeight = 0;
     const jumpInterval = setInterval(() => {
-        if (jumpHeight >= 220) { // Increased jump height
+        if (jumpHeight >= 150) {
             clearInterval(jumpInterval);
             fall();
         } else {
-            jumpHeight += 10; // Increased jump increment
+            jumpHeight += 10;
             spiderBottom += 10;
             spider.style.bottom = spiderBottom + 'px';
         }
@@ -53,19 +53,19 @@ function createObstacle() {
             obstacle.style.backgroundImage = "url('assets/skull.png')";
             obstacle.style.width = '50px';
             obstacle.style.height = '50px';
-            obstacle.classList.add('skull-obstacle');
+            obstacle.style.bottom = '0'; // Ensure it is at the same height as other obstacles
             break;
         case 1:
             obstacle.style.backgroundImage = "url('assets/scorpion.gif')"; // Updated to use GIF
-            obstacle.style.width = '180px'; // Increased size of the scorpion
-            obstacle.style.height = '180px'; // Increased size of the scorpion
-            obstacle.classList.add('scorpion-obstacle');
+            obstacle.style.width = '150px'; // Increased size of the scorpion
+            obstacle.style.height = '150px'; // Increased size of the scorpion
+            obstacle.style.bottom = '-65px'; // Lower the scorpion to align with other obstacles
             break;
         case 2:
             obstacle.style.backgroundImage = "url('assets/flower.png')";
             obstacle.style.width = '100px'; // Adjusted size of the flower
             obstacle.style.height = '100px'; // Adjusted size of the flower
-            obstacle.classList.add('flower-obstacle');
+            obstacle.style.bottom = '0'; // Ensure it is at the same height as other obstacles
             break;
     }
     obstacle.style.left = '800px';
@@ -87,22 +87,15 @@ function moveObstacle(obstacle) {
             }
             obstacles.shift();
             updateScore(); // Update score when an obstacle is successfully passed
+        } else if (
+            obstacleLeft > 50 && obstacleLeft < 100 &&
+            (spiderBottom < (parseInt(obstacle.style.height) + parseInt(obstacle.style.bottom)))
+        ) {
+            clearInterval(moveInterval);
+            gameOver();
         } else {
             obstacleLeft -= 5; // Slow down the movement speed
             obstacle.style.left = obstacleLeft + 'px';
-
-            const spiderRect = spider.getBoundingClientRect();
-            const obstacleRect = obstacle.getBoundingClientRect();
-
-            if (
-                spiderRect.left < obstacleRect.left + obstacleRect.width &&
-                spiderRect.left + spiderRect.width > obstacleRect.left &&
-                spiderRect.top < obstacleRect.top + obstacleRect.height &&
-                spiderRect.top + spiderRect.height > obstacleRect.top
-            ) {
-                clearInterval(moveInterval);
-                gameOver();
-            }
         }
     }, 20);
 }
@@ -123,7 +116,7 @@ function startGame() {
     backgroundMusic.play(); // Play background music when the game starts
     gameInterval = setInterval(() => {
         createObstacle();
-    }, 3000); // Increase the interval to 3000ms for more spacing between obstacles
+    }, 2000);
 }
 
 document.addEventListener('keydown', (e) => {
@@ -133,14 +126,6 @@ document.addEventListener('keydown', (e) => {
         }
         jump();
     }
-});
-
-// Add touch event listeners for mobile controls
-document.addEventListener('touchstart', (e) => {
-    if (backgroundMusic.paused) {
-        backgroundMusic.play(); // Ensure music starts on user interaction
-    }
-    jump();
 });
 
 startGame();

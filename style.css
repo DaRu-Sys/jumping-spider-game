@@ -27,7 +27,7 @@ body {
     position: relative;
     width: 90vw;
     max-width: 800px;
-    height: 50vh;
+    height: 60vh;
     max-height: 600px;
     background-color: #000;
     overflow: hidden;
@@ -49,7 +49,7 @@ body {
 
 #spider {
     position: absolute;
-    bottom: 0;
+    bottom: 5%; /* Adjusted bottom positioning */
     left: 10%;
     width: 10vw;
     height: 10vw;
@@ -61,13 +61,18 @@ body {
 
 .obstacle {
     position: absolute;
-    bottom: 0;
+    bottom: 0; /* Ensure all obstacles are at the same height */
     background-size: contain;
     background-repeat: no-repeat;
-    width: 12vw;
-    height: 12vw;
-    max-width: 100px;
-    max-height: 100px;
+}
+
+.scorpion-obstacle {
+    bottom: -80px; /* Adjust the scorpion lower */
+}
+
+.skull-obstacle,
+.flower-obstacle {
+    bottom: 0; /* Standard bottom positioning */
 }
 
 #score {
