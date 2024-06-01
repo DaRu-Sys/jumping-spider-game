@@ -116,7 +116,7 @@ function startGame() {
     backgroundMusic.play(); // Play background music when the game starts
     gameInterval = setInterval(() => {
         createObstacle();
-    }, 2000);
+    }, 3000); // Increase the interval to 3000ms for more spacing between obstacles
 }
 
 document.addEventListener('keydown', (e) => {
@@ -126,6 +126,14 @@ document.addEventListener('keydown', (e) => {
         }
         jump();
     }
+});
+
+// Add touch event listeners for mobile controls
+document.addEventListener('touchstart', (e) => {
+    if (backgroundMusic.paused) {
+        backgroundMusic.play(); // Ensure music starts on user interaction
+    }
+    jump();
 });
 
 startGame();

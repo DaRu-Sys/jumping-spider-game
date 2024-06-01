@@ -28,6 +28,7 @@ body {
     background-color: #000;
     overflow: hidden;
     border: 2px solid #fff;
+    margin: 20px auto;
 }
 
 #centerImage {
@@ -89,4 +90,38 @@ body {
 #bottomRightImage {
     bottom: 10px;
     right: 10px;
+}
+
+@media only screen and (max-width: 600px) {
+    #gameContainer {
+        width: 100%;
+        height: auto;
+        margin: 10px;
+    }
+
+    #centerImage {
+        width: 100%;
+    }
+
+    #spider {
+        width: 40px;
+        height: 40px;
+    }
+
+    .obstacle {
+        width: 50px; /* Adjust size for mobile */
+        height: 50px; /* Adjust size for mobile */
+    }
+
+    #promotionText {
+        font-size: 24px; /* Adjust font size for mobile */
+    }
+
+    #score {
+        font-size: 18px; /* Adjust font size for mobile */
+    }
+
+    #topLeftImage, #topRightImage, #bottomLeftImage, #bottomRightImage {
+        width: 50px; /* Adjust size for mobile */
+    }
 }
