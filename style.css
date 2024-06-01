@@ -26,13 +26,16 @@ body {
 #gameContainer {
     position: relative;
     width: 90vw;
-    height: 60vh;
+    max-width: 800px;
+    height: 50vh;
+    max-height: 600px;
     background-color: #000;
     overflow: hidden;
     border: 2px solid #fff;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 20px;
 }
 
 #centerImage {
@@ -47,7 +50,7 @@ body {
 #spider {
     position: absolute;
     bottom: 0;
-    left: 50px;
+    left: 10%;
     width: 10vw;
     height: 10vw;
     max-width: 60px;
@@ -103,12 +106,36 @@ body {
 }
 
 @media only screen and (max-width: 600px) {
+    #gameContainer {
+        width: 100vw;
+        height: 50vh;
+        margin: 10px 0;
+    }
+
+    #centerImage {
+        width: 80%;
+    }
+
+    #spider {
+        width: 15vw;
+        height: 15vw;
+    }
+
+    .obstacle {
+        width: 20vw; /* Adjust size for mobile */
+        height: 20vw; /* Adjust size for mobile */
+    }
+
     #promotionText {
         font-size: 24px; /* Adjust font size for mobile */
     }
 
     #score {
         font-size: 18px; /* Adjust font size for mobile */
+    }
+
+    #topLeftImage, #topRightImage, #bottomLeftImage, #bottomRightImage {
+        width: 10vw; /* Adjust size for mobile */
     }
 }
 
